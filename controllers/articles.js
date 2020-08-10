@@ -42,9 +42,8 @@ module.exports.deleteArticle = async (req, res, next) => {
     if (req.user._id !== obj.owner.toString()) {
       throw new ForbiddenError(message403.delete);
     }
-    const elemArticle = await Article.findByIdAndDelete(req.params._id)
-      .populate('owner');
-    return res.send(elemArticle);
+    await Article.deleteOne(obj);
+    return res.send(obj);
   } catch (err) {
     return next(err);
   }
