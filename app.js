@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { mongoDbAdress, mongoDbSettings } = require('./configs/database');
 const limiter = require('./configs/limiter');
@@ -17,6 +18,7 @@ const { notFound, centralizedProcessing } = require('./middlewares/errorHandler'
 // Подключение к базе данных
 mongoose.connect(mongoDbAdress, mongoDbSettings);
 
+app.use(cors());
 app.use(helmet());
 app.use(limiter);
 app.use(cookieParser());

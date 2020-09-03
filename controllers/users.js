@@ -13,6 +13,7 @@ module.exports.getUser = async (req, res, next) => {
     return res.send({
       email: profile.email,
       name: profile.name,
+      _id: profile._id,
     });
   } catch (err) {
     return next(err);
@@ -49,7 +50,10 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         });
-        res.send({ message: 'Successful authorization' });
+        res.send({
+          message: 'Successful authorization',
+          jwt: token,
+        });
       }).catch(next);
   }
   throw new BadRequestError(message400.data);
