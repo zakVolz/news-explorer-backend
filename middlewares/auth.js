@@ -3,7 +3,11 @@ const { JWT_SECRET } = require('../configs/settings');
 const { UnauthorizedError, message401 } = require('../errors/errors');
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+  let token = req.cookies.jwt;
+  const { authorization } = req.headers;
+  if (authorization && authorization.startsWith('Bearer ')) {
+    token = authorization.replace('Bearer ', '');
+  }
   if (!token) {
     return next(new UnauthorizedError(message401.login));
   }
