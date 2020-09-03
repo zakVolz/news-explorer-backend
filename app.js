@@ -14,11 +14,12 @@ const { PORT } = require('./configs/settings');
 const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { notFound, centralizedProcessing } = require('./middlewares/errorHandler');
+const corsOptions = require('./configs/cors');
 
 // Подключение к базе данных
 mongoose.connect(mongoDbAdress, mongoDbSettings);
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(limiter);
 app.use(cookieParser());
