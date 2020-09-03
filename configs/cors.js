@@ -1,4 +1,4 @@
-const whitelist = ['https://news-explorer-project.tk', 'http://news-explorer-project.tk', 'https://zakvolz.github.io/news-explorer-frontend', 'https://yadi.sk'];
+const whitelist = ['https://news-explorer-project.tk', 'http://news-explorer-project.tk', 'https://zakvolz.github.io/news-explorer-frontend', 'https://yadi.sk', 'http://yadi.sk'];
 const corsOptions = {
   origin(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
